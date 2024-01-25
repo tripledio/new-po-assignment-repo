@@ -1,2 +1,2 @@
 @echo off
-mvnw -q install exec:java -Dexec.mainClass="io.tripled.scorekeeper.ScorekeeperApplication"
+mvnw -q install exec:java -Dexec.mainClass="io.tripled.scorekeeper.ScorekeeperApplication"  -Dexec.args=$1

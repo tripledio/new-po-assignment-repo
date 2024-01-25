@@ -1,31 +1,21 @@
 package io.tripled.scorekeeper;
 
 
-import java.util.Scanner;
+import io.tripled.scorekeeper.cli.CLIScorekeeperApplication;
+import io.tripled.scorekeeper.web.WebModeApplication;
 
 public class ScorekeeperApplication {
 
     public static void main(String[] args) {
-        System.out.println("**************************");
-        System.out.println("**    Scorekeeper       **");
-        System.out.println("**************************");
-        readInput();
-    }
-
-    public static void readInput() {
-        System.out.println("> q to quit");
-        try (Scanner scanner = new Scanner(System.in)) {
-            String input;
-            do {
-                input = scanner.nextLine();
-                System.out.println("I read :" + input);
-            }
-            while (!isQuit(input));
+        if (mustRunInWebMode(args)) {
+            WebModeApplication.runWebApp(args);
+        } else {
+            CLIScorekeeperApplication.runConsoleApp();
         }
-        System.out.println("*********END*****************");
     }
 
-    private static boolean isQuit(String input) {
-        return "q".equalsIgnoreCase(input);
+    private static boolean mustRunInWebMode(String[] args) {
+        return args.length > 0 && args[0].equalsIgnoreCase("web");
     }
+
 }

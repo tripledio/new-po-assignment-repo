@@ -1,0 +1,6 @@
+// @no-redirect
+POST http://localhost:8080/execute
+Content-Type: application/json
+Accept: application/json
+
+{ "instruction" : "toffe jongen"}
