@@ -15,8 +15,9 @@ do everything with pure java.
 
 ### Existing code
 
-In this code repository there is some simple start code to get things going. I've chosen to use java8 maven and junit5. However, feel free to throw it away and
-to it in other way.
+In this code repository there is some simple start code to get things going. I've chosen to use java maven and junit5. However, feel free to throw it away and
+to it in other way. 
+
 **The sole requirement is that the application can be run using the 'scorekeeper' command.**
 
 Because this is how the users wil use you application and evaluate it. If this command does not work, you application does not work! After all, we can not
