@@ -1,18 +1,11 @@
 package io.tripled.scorekeeper.web;
 
-public class KeepScoreResult {
-    private String result;
+import java.util.List;
 
-    public String getResult() {
+public record KeepScoreResult(List<String> result) {
+
+    public List<String> getResult() {
         return result;
     }
 
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    @Override
-    public String toString() {
-        return result;
-    }
 }

@@ -7,22 +7,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 public class AutomatedTestController {
     private final Logger logger = LoggerFactory.getLogger(AutomatedTestController.class);
-    private final ScoreKeeperService service = new ScoreKeeperService();
+    private ScoreKeeperService service = new ScoreKeeperService();
 
     @PostMapping(value = "execute")
     public KeepScoreResult execute(@RequestBody KeepScoreCommand command) {
         logger.info("Received command with instruction [" + command.getInstruction() + "]");
         final String instruction = command.getInstruction();
-
-        final String result = service.processCommand(instruction);
-
-        final KeepScoreResult keepScoreResult = new KeepScoreResult();
-        keepScoreResult.setResult(result);
+        final KeepScoreResult keepScoreResult = handleInstruction(instruction);
         logger.info("Returning [" + keepScoreResult + "]");
         return keepScoreResult;
     }
+
+    private KeepScoreResult handleInstruction(String instruction) {
+        if (instruction.equalsIgnoreCase("new")) {
+            service = new ScoreKeeperService();
+            return new KeepScoreResult(List.of("Refreshed the application"));
+        } else {
+            final List<String> result = service.processCommand(instruction);
+            return new KeepScoreResult(result);
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ package io.tripled.scorekeeper.cli;
 
 import io.tripled.scorekeeper.ScoreKeeperService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CLIScorekeeperApplication {
@@ -22,8 +23,8 @@ public class CLIScorekeeperApplication {
             String input;
             do {
                 input = scanner.nextLine();
-                final String result = service.processCommand(input);
-                System.out.println(result);
+                final List<String> result = service.processCommand(input);
+                result.forEach(System.out::println);
             }
             while (!isQuit(input));
         }
